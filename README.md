@@ -6,6 +6,7 @@ This terraform module will provision GKE, DB and Redis components for deployment
 
 ```hcl
 module "infra" {
+  source     = "github.com/deriv-com/terraform-gcp-webapp?ref=v1.0.0"
   project_id = var.project_id
   region     = var.region
 
