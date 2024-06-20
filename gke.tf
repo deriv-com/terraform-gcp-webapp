@@ -41,7 +41,7 @@ resource "google_container_cluster" "gke_cluster" {
         display_name = cidr_blocks.value.display_name
       }
     }
-    gcp_public_cidrs_access_enabled = true
+    gcp_public_cidrs_access_enabled = false
   }
 
   # Private Cluster Configuration
