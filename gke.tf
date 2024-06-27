@@ -17,13 +17,6 @@ variable "gke_max_node_count" {
   default     = 2
 }
 
-variable "authorized_cidr_blocks" {
-  type = list(object({
-    cidr_block   = string
-    display_name = string
-  }))
-}
-
 # GKE Cluster (with private nodes and ingress enabled)
 resource "google_container_cluster" "gke_cluster" {
   provider            = google-beta
@@ -33,16 +26,6 @@ resource "google_container_cluster" "gke_cluster" {
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
 
-  master_authorized_networks_config {
-    dynamic "cidr_blocks" {
-      for_each = var.authorized_cidr_blocks
-      content {
-        cidr_block   = cidr_blocks.value.cidr_block
-        display_name = cidr_blocks.value.display_name
-      }
-    }
-    gcp_public_cidrs_access_enabled = true
-  }
 
   # Private Cluster Configuration
   private_cluster_config {

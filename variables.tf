@@ -1,11 +1,13 @@
 variable "project_id" {
   description = "The GCP project ID"
   type        = string
+  default = "gcp-template-425614"
 }
 
 variable "region" {
   description = "The GCP region"
   type        = string
+  default = "us-east1"
 }
 
 variable "master_ipv4_cidr_block" {
